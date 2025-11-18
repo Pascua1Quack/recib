@@ -15,6 +15,69 @@
 
 <div class="container my-5">
   <h2 class="text-center mb-4">Consulta o Registro de Factura</h2>
+  <div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow">
+        <div class="card-header text-white text-center" style="background-color:#006847;">
+          <h4>Consulta tu Lectura Actual</h4>
+        </div>
+
+        <div class="card-body">
+          <form id="consultaLecturaForm">
+
+            <div class="form-group">
+              <label>Número de Cuenta</label>
+              <input type="text" class="form-control" id="cuenta" placeholder="Ej. 1234567890" required>
+            </div>
+
+            <button class="btn btn-success btn-block" style="background-color:#006847;">
+              Consultar
+            </button>
+
+          </form>
+
+          <div id="resultadoLectura" class="mt-4" style="display:none;">
+            <div class="alert alert-info text-center">
+              <h5>Resultado de la Consulta</h5>
+              <p id="detalle"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Generar datos aleatorios 
+function generarDatos() {
+  const lecturaActual = Math.floor(Math.random() * (2500 - 500) + 500); // entre 500 y 2500 kWh
+  const consumoMes = Math.floor(Math.random() * (400 - 50) + 50); // 50 a 400 kWh
+  const monto = (consumoMes * 2.8).toFixed(2); // tarifa ficticia de 2.8 pesos por kWh
+
+  return { lecturaActual, consumoMes, monto };
+}
+
+// Manejar el formulario
+document.getElementById("consultaLecturaForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const cuenta = document.getElementById("cuenta").value.trim();
+  const datos = generarDatos();
+
+  document.getElementById("detalle").innerHTML = 
+    "<strong>Número de Cuenta:</strong> " + cuenta + "<br>" +
+    "<strong>Lectura Actual:</strong> " + datos.lecturaActual + " kWh<br>" +
+    "<strong>Consumo del Mes:</strong> " + datos.consumoMes + " kWh<br>" +
+    "<strong>Monto Estimado:</strong> $" + datos.monto + " MXN";
+
+  document.getElementById("resultadoLectura").style.display = "block";
+});
+</script>
+  
   <!-- SECCIÓN: CAPTURA DE LECTURA -->
 <div class="container my-5">
   <div class="row justify-content-center">
