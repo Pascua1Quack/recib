@@ -77,7 +77,8 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
   if(usuario === usuarioValido && password === passwordValida){
     // Guardamos sesión local (simple)
     localStorage.setItem("sesionCFE", "activa");
-    window.location.href = "factura.html";
+    window.location.href = "registro-lectura.html";
+    
   } else {
     document.getElementById("error").style.display = "block";
   }
